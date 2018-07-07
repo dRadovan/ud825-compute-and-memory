@@ -60,6 +60,8 @@ public class BusyUIThreadActivity extends Activity {
         // Challenge accepted!
         Bitmap loadedBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.punk_droid);
 
+        // By performing the sepia filter manipulations in an AsyncTask, our UI can continue while
+        // the CPU is processing the filter. Notice how the dancing pirate never misses a beat now?
         new SepiaFilterTask().execute(loadedBitmap);
     }
 

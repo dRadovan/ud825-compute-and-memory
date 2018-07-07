@@ -60,11 +60,14 @@ public class CachingActivity extends Activity {
      * @return the nth number of the fibonacci sequence.  Seriously, try to keep up.
      */
     public int computeFibonacci(int positionInFibSequence) {
-        if (positionInFibSequence <= 2) {
-            return 1;
-        } else {
-            return computeFibonacci(positionInFibSequence - 1)
-                    + computeFibonacci(positionInFibSequence - 2);
+        int prev = 0;
+        int current = 1;
+        int newValue;
+        for (int i=1; i<positionInFibSequence; i++) {
+            newValue = current + prev;
+            prev = current;
+            current = newValue;
         }
+        return current;
     }
 }

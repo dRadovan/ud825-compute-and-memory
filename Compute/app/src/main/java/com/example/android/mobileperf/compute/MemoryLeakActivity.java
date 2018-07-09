@@ -36,7 +36,9 @@ public class MemoryLeakActivity extends Activity {
     @Override
     protected void onStop() {
         super.onStop();
-        // clean up all listeners when activity is about to be destroyed
+        // By clearing out the set of listeners when the Activity stops, we can avoid excessive
+        // memory leaks. When the Activity is re-started, the custom view will be created and
+        // will then create its own listener again.
         ListenerCollector.clearListeners();
     }
 }

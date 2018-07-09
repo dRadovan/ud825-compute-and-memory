@@ -16,9 +16,7 @@
 package com.example.android.mobileperf.compute;
 
 import android.view.View;
-
 import com.example.android.mobileperf.compute.MyCustomView.MyListener;
-
 import java.util.WeakHashMap;
 
 /**
@@ -34,7 +32,7 @@ public class ListenerCollector {
         sListeners.put(view, listener);
     }
 
-    public static void clearListeners(){
+    public static void clearListeners() {
         sListeners.clear();
     }
 }

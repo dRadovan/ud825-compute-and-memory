@@ -24,6 +24,8 @@ import android.webkit.WebView;
 import android.widget.Button;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class DataStructuresActivity extends Activity {
@@ -58,21 +60,20 @@ public class DataStructuresActivity extends Activity {
      */
     public void dumpPopularRandomNumbersByRank() {
         Trace.beginSection("Data Structures");
-        // First we need a sorted list of the numbers to iterate through.
+        // First we need a list of the numbers to iterate through.
         Integer[] sortedNumbers = SampleData.coolestRandomNumbers.clone();
+        // make a copy to HashMap
+        Map<Integer, Integer> rankedNumbers = new HashMap<>();
+        for (int i=0; i<sortedNumbers.length; i++){
+            rankedNumbers.put(sortedNumbers[i], i);
+        }
+        // sort the numbers
         Arrays.sort(sortedNumbers);
 
-        // Great!  Now because we have no rank lookup in the population-sorted array,
-        // take the random number in sorted order, and find its index in the array
-        // that's sorted by popularity.  The index is the rank, so report that.  Easy and efficient!
-        // Except that it's... you know... It's not.
+        Integer number;
         for (int i = 0; i < sortedNumbers.length; i++) {
-            Integer currentNumber = sortedNumbers[i];
-            for (int j = 0; j < SampleData.coolestRandomNumbers.length; j++) {
-                if (currentNumber.compareTo(SampleData.coolestRandomNumbers[j]) == 0) {
-                    Log.i("Popularity Dump", currentNumber + ": #" + j);
-                }
-            }
+            number = sortedNumbers[i];
+            Log.i("Popularity Dump", number + ": #" + rankedNumbers.get(number));
         }
         Trace.endSection();
     }

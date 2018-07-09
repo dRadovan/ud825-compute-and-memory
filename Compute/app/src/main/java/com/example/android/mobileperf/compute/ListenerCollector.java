@@ -15,16 +15,22 @@
  */
 package com.example.android.mobileperf.compute;
 
-import java.util.HashMap;
-import java.util.Random;
+import android.view.View;
 
+import com.example.android.mobileperf.compute.MyCustomView.MyListener;
 
-public class SampleData {
-    public static HashMap<Integer, Integer> coolestRandomNumbers = new HashMap<>();
-    static {
-        Random randomGenerator = new Random();
-        for (int i=0; i<3000; i++) {
-            coolestRandomNumbers.put(randomGenerator.nextInt(), i);
-        }
+import java.util.WeakHashMap;
+
+/**
+ * The ListenerCollector acts as runtime storage for all the view/listener relationships
+ * among the MyCustomView instances.
+ */
+public class ListenerCollector {
+    // A common case is to want to store all the listeners for a particular type of view
+    // somewhere.  Harmless AND convenient.  Or... is it? o_0
+    static private WeakHashMap<View, MyListener> sListeners = new WeakHashMap<View,  MyListener>();
+
+    public void setListener(View view, MyListener listener) {
+        sListeners.put(view, listener);
     }
 }

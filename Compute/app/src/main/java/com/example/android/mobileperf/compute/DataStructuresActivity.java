@@ -56,18 +56,18 @@ public class DataStructuresActivity extends Activity {
 
     /**
      * Using the pre-formed array of random numbers ordered by popularity, prints out an ordered
-     * list of the random number + rank in the form "(RandomNumber): #(Rank)".
+     * list of the random number + rank in the form "(RandomNumber): #(Rank)". By sorting the
+     * keyset, we can easily sort the numbers and retrieve their rank without needing to maintain
+     * two redundant data structures.
      */
     public void dumpPopularRandomNumbersByRank() {
-        Trace.beginSection("Data Structures");
-        // First we need a list of the numbers to iterate through.
-        Integer[] sortedNumbers = SampleData.coolestRandomNumbers.clone();
-        // make a copy to HashMap
+        Trace.beginSection("Data structures");
+        // Make a copy so that we don't accidentally shatter our data structure.
         Map<Integer, Integer> rankedNumbers = new HashMap<>();
-        for (int i=0; i<sortedNumbers.length; i++){
-            rankedNumbers.put(sortedNumbers[i], i);
-        }
-        // sort the numbers
+        rankedNumbers.putAll(SampleData.coolestRandomNumbers);
+        // Then, we need a sorted version of the numbers to iterate through.
+        Integer[] sortedNumbers = {};
+        sortedNumbers = rankedNumbers.keySet().toArray(sortedNumbers);
         Arrays.sort(sortedNumbers);
 
         Integer number;

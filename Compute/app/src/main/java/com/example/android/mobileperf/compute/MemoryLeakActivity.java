@@ -15,16 +15,21 @@
  */
 package com.example.android.mobileperf.compute;
 
-import java.util.HashMap;
-import java.util.Random;
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
 
+/**
+ * The most completely unremarkable Activity code you'll probably ever see.  How could this hide
+ * a memory leak?  HOW?
+ */
+public class MemoryLeakActivity extends Activity {
 
-public class SampleData {
-    public static HashMap<Integer, Integer> coolestRandomNumbers = new HashMap<>();
-    static {
-        Random randomGenerator = new Random();
-        for (int i=0; i<3000; i++) {
-            coolestRandomNumbers.put(randomGenerator.nextInt(), i);
-        }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_memory_leak);
+
+        View customView = findViewById(R.id.customView);
     }
 }

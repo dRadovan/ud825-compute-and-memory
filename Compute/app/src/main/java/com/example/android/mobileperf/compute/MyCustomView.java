@@ -25,6 +25,7 @@ public class MyCustomView extends View {
         public void someListenerCallback();
     }
 
+
     /**
      * Internal initialization procedures for this view, regardless of which constructor was called.
      */

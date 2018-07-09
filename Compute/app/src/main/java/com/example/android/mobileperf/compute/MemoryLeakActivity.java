@@ -32,4 +32,11 @@ public class MemoryLeakActivity extends Activity {
 
         View customView = findViewById(R.id.customView);
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // clean up all listeners when activity is about to be destroyed
+        ListenerCollector.clearListeners();
+    }
 }
